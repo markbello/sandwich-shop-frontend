@@ -20,6 +20,7 @@ const App = (function(){
         }, 2000)
         img.addEventListener('click', function(){
           moneyCount.innerText = parseInt(moneyCount.innerText) + 1
+          App.animateSandwich(1, 2800)
         })
         setInterval(function(){
           document.getElementById('money-count').innerText = parseInt(document.getElementById('money-count').innerText) + json.sandwiches_per_second
@@ -35,6 +36,25 @@ const App = (function(){
       .then(json => {
         Worker.renderAllWorkers(json)
       })
+
+
+    }
+    static animateSandwich(count, interval){
+
+      for(let i = 0; i < count; i++){
+        setTimeout(function(){
+          let newSandwich = document.createElement('img')
+          newSandwich.src = "./assets/sandwich.svg"
+          newSandwich.style.height = "100px"
+          newSandwich.className = "roadrunner-target"
+          document.getElementById('animated-sandwiches').append(newSandwich)
+          setInterval(function(){
+            newSandwich.remove()
+          }, interval)
+        }, 100)
+
+      }
+
     }
   }
 })()

@@ -6,16 +6,29 @@
     <link rel="stylesheet" href="./index.css">
   </head>
   <body>
-    <h2>Money: $<span id='money-count'>0</span></h2>
-    <img src='ham_sandwich.jpg' id='image' height='200'>
-    <div id="side-bar">
-      <div id="workers">
-
+    <div class="main-container">
+      <div id="balance-container">
+        <h1>Money: $<span id='money-count'>0</span></h1>
+        <h3><em>Click the sandwich to begin</em></h3>
       </div>
-      <hr>
-      <div id="upgrades">
-
+      <div id="sandwich-container">
+        <div id="sandwich-button">
+          <img src='./assets/sandwich.svg' id='image' height='200'>
+        </div>
       </div>
+      <div id="animated-sandwiches">
+      </div>
+      <div id="modifiers-container">
+        <div id="side-bar">
+          <div id="workers">
+
+          </div>
+          <hr>
+          <div id="upgrades">
+
+          </div>
+        </div>
+    </div>
     </div>
     <script src="src/shopsAdapter.js"></script>
     <script src="src/upgradesAdapter.js"></script>

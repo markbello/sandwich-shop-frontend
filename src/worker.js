@@ -76,6 +76,7 @@ const Worker = (function(){
             .then(json => {
               Worker.createNewInterval(json.sandwiches_per_second_modifier)
               Worker.renderUpdatedWorker(json)
+              App.animateSandwich(json.sandwiches_per_second_modifier, 2800)
             })
           }
         })
