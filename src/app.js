@@ -30,7 +30,9 @@ const App = (function(){
       })
 
       UpgradesAdapter.getAllUpgrades()
-      .then(json => console.log(json[1].worker_id))
+      .then(json => {
+        Upgrade.renderAllUpgrades(json)
+      })
 
       WorkersAdapter.getAllWorkers()
       .then(json => {
