@@ -11,6 +11,11 @@ const App = (function(){
       //   console.log("gameInterval is doing a thing")
       // }, 1000)
 
+      let resetButton = document.getElementById('reset-button')
+      resetButton.addEventListener('click', function(){
+        // ShopsAdapter.resetShop()
+      })
+
       ShopsAdapter.getShop()
       .then(json => {
         console.log(json)
@@ -26,6 +31,10 @@ const App = (function(){
           document.getElementById('money-count').innerText = parseInt(document.getElementById('money-count').innerText) + json.sandwiches_per_second
           let balance = parseInt(document.getElementById('money-count').innerText)
           ShopsAdapter.updateBalance(balance)
+          .then(json => {
+            Worker.determineWorkerAvailability(json)
+            App.randomImage()
+          })
         },1000)
       })
 
@@ -39,6 +48,27 @@ const App = (function(){
         Worker.renderAllWorkers(json)
       })
 
+
+    }
+
+    static randomImage(){
+      let randomNumber = Math.floor(Math.random() * 100)
+      console.log(`random number is ${randomNumber}`)
+      if(randomNumber <= 10){
+        setTimeout(function(){
+          let newImage = document.createElement('img')
+          newImage.src = `./assets/random-${randomNumber}.svg`
+          newImage.style.height = "100px"
+          newImage.className = "roadrunner-target"
+          document.getElementById('animated-sandwiches').append(newImage)
+          setInterval(function(){
+            newImage.remove()
+          }, 2800)
+        }, 100)
+      }else if(randomNumber >= 90){
+        let randomCount = Math.floor(Math.random() * 6)
+        App.animateSandwich(randomCount, 2800)
+      }
 
     }
     static animateSandwich(count, interval){

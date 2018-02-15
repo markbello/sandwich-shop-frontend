@@ -30,6 +30,9 @@ const ShopsAdapter = (function(){
           balance: newBalance
         })
       })
+      .then(res => res.json())
     }
+
+
   }
 })()

@@ -14,7 +14,7 @@ body{
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 #balance-container{
@@ -22,20 +22,93 @@ body{
 }
 
 #sandwich-button{
-  z-index: 10;
+  background: none;
+  border: none;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+#sandwich-button:focus{
+  outline: none;
+}
+
+#sandwich-button:active{
+  transform: translateY(10px);
 }
 
 #animated-sandwiches{
   height: 200px;
 }
 
+#workers{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#workers div{
+  /* padding: 20px; */
+}
+
+#side-bar h3{
+  text-align: center;
+}
+
+.worker-div{
+  padding: 20px;
+}
+
+.hire-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.hire-container button{
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.press-down{
+}
+
+.available-worker-div{
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.available-worker-div:active{
+  transform: translateY(10px);
+}
+
+.unavailable-worker-div{
+  transition: all 0.1s ease-in-out;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.unavailable-worker-div:active{
+  transform: scale(0.95);
+}
+
+.worker-header{
+  text-align: right;
+}
+
+h3.item-data {
+  text-align: center;
+}
+
 /* ANIMATIONS */
 
-
+.shake-target{
+  -webkit-animation: shake-2 1000ms linear 1 both;
+  animation: shake-2 1000ms linear 1 both;
+}
 
 .roadrunner-target {
-  -webkit-animation: roadrunner 2800ms linear infinite both;
-  animation: roadrunner 2800ms linear infinite both;
+  -webkit-animation: roadrunner 2800ms linear 1 both;
+  animation: roadrunner 2800ms linear 1 both;
 }
 
 /* Generated with Bounce.js. Edit at https://goo.gl/B1bNzi */
@@ -155,4 +228,92 @@ body{
   94.28% { -webkit-transform: matrix3d(1, 0, 0, 0, 0.839, 1, 0, 0, 0, 0, 1, 0, 2999.917, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0.839, 1, 0, 0, 0, 0, 1, 0, 2999.917, 0, 0, 1); }
   98.21% { -webkit-transform: matrix3d(1, 0, 0, 0, 0.839, 1, 0, 0, 0, 0, 1, 0, 2999.982, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0.839, 1, 0, 0, 0, 0, 1, 0, 2999.982, 0, 0, 1); }
   100% { -webkit-transform: matrix3d(1, 0, 0, 0, 0.839, 1, 0, 0, 0, 0, 1, 0, 3000, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0.839, 1, 0, 0, 0, 0, 1, 0, 3000, 0, 0, 1); }
+}
+
+
+@keyframes shake-2 {
+0% {
+  -webkit-transform:translate(2px,1px) rotate(0deg)
+}
+
+10% {
+  -webkit-transform:translate(-1px,-2px) rotate(-1deg)
+}
+
+20% {
+  -webkit-transform:translate(-3px,0px) rotate(1deg)
+}
+
+30% {
+  -webkit-transform:translate(0px,2px) rotate(0deg)
+}
+
+40% {
+  -webkit-transform:translate(1px,-1px) rotate(1deg)
+}
+
+50% {
+  -webkit-transform:translate(-1px,2px) rotate(-1deg)
+}
+
+60% {
+  -webkit-transform:translate(-3px,1px) rotate(0deg)
+}
+
+70% {
+  -webkit-transform:translate(2px,1px) rotate(-1deg)
+}
+
+80% {
+  -webkit-transform:translate(-1px,-1px) rotate(1deg)
+}
+
+90% {
+  -webkit-transform:translate(2px,2px) rotate(0deg)
+}
+
+100% {
+  -webkit-transform:translate(1px,-2px) rotate(-1deg)
+}
+}
+
+@keyframes headShake {
+
+
+  0 {
+    transform: translateX(0)
+  }
+
+  6.5% {
+    transform: translateX(-6px) rotateY(-9deg)
+  }
+
+  16.5% {
+    transform: translateX(5px) rotateY(7deg)
+  }
+
+  31.5% {
+    transform: translateX(-3px) rotateY(-5deg)
+  }
+
+  43.5% {
+    transform: translateX(2px) rotateY(3deg)
+  }
+
+  50% {
+    transform: translateX(0)
+  }
+}
+
+
+.headShake {
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-name: headShake;
+}
+
+@media screen and (max-width: 960px){
+  #workers {
+    flex-direction: column;
+  }
 }

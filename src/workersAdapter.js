@@ -27,5 +27,6 @@ const WorkersAdapter = (function(){
       })
       .then(res => res.json())
     }
+
   }
 })()

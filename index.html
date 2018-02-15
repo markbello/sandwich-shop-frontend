@@ -4,29 +4,29 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./animate.css">
   </head>
   <body>
     <div class="main-container">
       <div id="balance-container">
-        <h1>Money: $<span id='money-count'>0</span></h1>
+        <h1 style="display: inline">Money: $<span id='money-count'>0</span>  </h1><i class="fa fa-repeat" id="reset-button" style="display: inline"></i>
+
         <h3><em>Click the sandwich to begin</em></h3>
       </div>
       <div id="sandwich-container">
-        <div id="sandwich-button">
-          <img src='./assets/sandwich.svg' id='image' height='200'>
+        <div id="sandwich-button-container">
+          <button id="sandwich-button"><img src='./assets/sandwich.svg' id='image' height='200'></button>
         </div>
       </div>
       <div id="animated-sandwiches">
       </div>
       <div id="modifiers-container">
         <div id="side-bar">
+          <h3><em>Click to Add Sandwich Producers</em></h3>
           <div id="workers">
 
           </div>
-          <hr>
-          <div id="upgrades">
 
-          </div>
         </div>
     </div>
     </div>
@@ -37,5 +37,6 @@
     <script src="src/worker.js"></script>
     <script src="src/app.js"></script>
     <script src="src/index.js"></script>
+    <script src="https://use.fontawesome.com/79b9c28754.js"></script>
   </body>
 </html>

@@ -10,7 +10,6 @@ const Worker = (function(){
 
     static renderAllWorkers(json){
       const workersDiv = document.getElementById('workers')
-      workersDiv.className = "worker-div"
 
       json.sort(function(a,b){
         if(a.id < b.id) return -1
@@ -22,50 +21,30 @@ const Worker = (function(){
         let worker = new Worker(workerInstance)
         let workerDiv = document.createElement('div')
         workerDiv.id = `worker-${worker.id}`
+        workerDiv.className = "worker-div"
 
-        let workerNameSpan = document.createElement('span')
-        workerNameSpan.id = `worker-${worker.id}-name`
-        workerNameSpan.className = `item-data`
-        workerNameSpan.innerText = worker.name
-        workerDiv.append(workerNameSpan)
 
-        let quantityLabel = document.createElement('span')
-        quantityLabel.className = "item-label"
-        quantityLabel.innerText = " | Quantity: "
-        workerDiv.append(quantityLabel)
 
-        let workerQuantitySpan = document.createElement('span')
-        workerQuantitySpan.id = `worker-${worker.id}-quantity`
-        workerQuantitySpan.className = 'item-data'
-        workerQuantitySpan.innerText = worker.quantity
-        workerDiv.append(workerQuantitySpan)
+        let hireDiv = document.createElement('div')
+        hireDiv.className = 'hire-container'
 
-        let costLabel = document.createElement('span')
-        costLabel.className = "item-label"
-        costLabel.innerText = " | Unit Cost: "
-        workerDiv.append(costLabel)
+        let avatarDiv = document.createElement('div')
+        avatarDiv.className = "avatar-div"
+        let avatarImg = document.createElement('img')
+        avatarImg.className = "avatar-img"
+        avatarImg.src = `./assets/worker-${worker.id}-avatar.svg`
+        avatarImg.style.width = "100px"
+        avatarDiv.append(avatarImg)
+        hireDiv.append(avatarDiv)
 
-        let workerCostSpan = document.createElement('span')
-        workerCostSpan.id = `worker-${worker.id}-cost`
-        workerCostSpan.className = 'item-data'
-        workerCostSpan.innerText = worker.cost
-        workerDiv.append(workerCostSpan)
+        let workerHeaders = document.createElement('div')
+        workerHeaders.className = "worker-header"
 
-        let sandWichesPerSecondLabel = document.createElement('span')
-        sandWichesPerSecondLabel.className = "item-label"
-        sandWichesPerSecondLabel.innerText = " | Sandwiches Per Second Modifier: "
-        workerDiv.append(sandWichesPerSecondLabel)
+        let addWorkerHeader = document.createElement('h2')
+        addWorkerHeader.id = `worker-${worker.id}-cost`
+        addWorkerHeader.innerText = `+ $${worker.cost}`
 
-        let workerSandwichesPerSecondSpan = document.createElement('span')
-        workerSandwichesPerSecondSpan.id = `worker-${worker.id}-sandwiches-per-second`
-        workerSandwichesPerSecondSpan.className = 'item-data'
-        workerSandwichesPerSecondSpan.innerText = worker.sandwiches_per_second_modifier
-        workerDiv.append(workerSandwichesPerSecondSpan)
-
-        let addWorkerButton = document.createElement('button')
-        addWorkerButton.innerText = `Hire Another ${worker.name}`
-
-        addWorkerButton.addEventListener('click', function(e){
+        workerDiv.addEventListener('click', function(e){
           e.stopPropagation()
           if(parseInt(counter.innerText) > worker.cost){
             counter.innerText = parseInt(counter.innerText) - worker.cost
@@ -81,7 +60,67 @@ const Worker = (function(){
           }
         })
 
-        workerDiv.append(addWorkerButton)
+        workerHeaders.append(addWorkerHeader)
+        let quantityDiv = document.createElement('div')
+        quantityDiv.className = 'item-container'
+
+        // let quantityLabel = document.createElement('span')
+        // quantityLabel.className = "item-label"
+        // quantityLabel.innerText = "Quantity: "
+        // quantityDiv.append(quantityLabel)
+
+        let workerQuantitySpan = document.createElement('h2')
+        workerQuantitySpan.id = `worker-${worker.id}-quantity`
+        workerQuantitySpan.className = 'item-data'
+        workerQuantitySpan.innerText = `${worker.quantity}x`
+        workerHeaders.append(workerQuantitySpan)
+
+        hireDiv.append(workerHeaders)
+        // workerDiv.append(quantityDiv)
+
+        workerDiv.append(hireDiv)
+
+        let workerNameSpan = document.createElement('h3')
+        workerNameSpan.id = `worker-${worker.id}-name`
+        workerNameSpan.className = `item-data`
+        workerNameSpan.innerText = worker.name
+        workerDiv.append(workerNameSpan)
+
+
+
+
+
+        // let costDiv = document.createElement('div')
+        // costDiv.className = 'item-container'
+        //
+        // let costLabel = document.createElement('span')
+        // costLabel.className = "item-label"
+        // costLabel.innerText = "Unit Cost: "
+        // costDiv.append(costLabel)
+        //
+        // let workerCostSpan = document.createElement('span')
+        // workerCostSpan.id = `worker-${worker.id}-cost`
+        // workerCostSpan.className = 'item-data'
+        // workerCostSpan.innerText = worker.cost
+        // costDiv.append(workerCostSpan)
+        //
+        // workerDiv.append(costDiv)
+
+        let spsDiv = document.createElement('div')
+        spsDiv.className = 'item-container'
+
+        let sandWichesPerSecondLabel = document.createElement('span')
+        sandWichesPerSecondLabel.className = "item-label"
+        sandWichesPerSecondLabel.innerText = "Sandwiches Per Second: "
+        spsDiv.append(sandWichesPerSecondLabel)
+
+        let workerSandwichesPerSecondSpan = document.createElement('span')
+        workerSandwichesPerSecondSpan.id = `worker-${worker.id}-sandwiches-per-second`
+        workerSandwichesPerSecondSpan.className = 'item-data'
+        workerSandwichesPerSecondSpan.innerText = worker.sandwiches_per_second_modifier * worker.quantity
+        spsDiv.append(workerSandwichesPerSecondSpan)
+
+        workerDiv.append(spsDiv)
 
         workersDiv.append(workerDiv)
 
@@ -104,14 +143,36 @@ const Worker = (function(){
       const workerId = json.id
 
       const quantityDiv = document.getElementById(`worker-${workerId}-quantity`)
-      quantityDiv.innerText = json.quantity
+      quantityDiv.innerText = `${json.quantity}x`
 
       const costDiv = document.getElementById(`worker-${workerId}-cost`)
-      costDiv.innerText = json.cost
+      costDiv.innerText = `+ $${json.cost}`
 
       const spsDiv = document.getElementById(`worker-${workerId}-sandwiches-per-second`)
-      spsDiv.innerText = json.sandwiches_per_second_modifier
+      spsDiv.innerText = json.sandwiches_per_second_modifier * json.quantity
 
+    }
+
+    static determineWorkerAvailability(json){
+      const workers = json.worker_array
+      const balance = json.balance
+      for(let i = 0; i < workers.length; i++){
+        const workerDiv = document.getElementById(`worker-${i+1}`)
+        if(workers[i] >= balance){
+          workerDiv.classList.remove('available-worker-div')
+          workerDiv.classList.add('unavailable-worker-div')
+          workerDiv.style.opacity = '0.5'
+          workerDiv.classList.add('headShake')
+          workerDiv.addEventListener('click', function(){
+            workerDiv.classList.toggle('headShake')
+          })
+        } else{
+          workerDiv.style.opacity = "1"
+          workerDiv.classList.remove('unavailable-worker-div')
+          workerDiv.classList.remove('headShake')
+          workerDiv.classList.add('available-worker-div')
+        }
+      }
     }
 
     render(){
