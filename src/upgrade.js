@@ -76,7 +76,6 @@ const Upgrade = (function(){
               Upgrade.createNewInterval(json.sandwiches_per_second_modifier)
               UpgradesAdapter.deleteUpgrade(json.id)
               upgradeDiv.remove()
-              // Upgrade.renderUpdatedUpgrade(json)
               App.animateSandwich(json.sandwiches_per_second_modifier, 2800)
             })
           }
@@ -98,18 +97,5 @@ const Upgrade = (function(){
       }, 1000)
     }
 
-    static renderUpdatedUpgrade(json){
-
-      console.log(json)
-
-      const upgradeId = json.id
-
-      const costDiv = document.getElementById(`upgrade-${upgradeId}-cost`)
-      costDiv.innerText = json.cost
-
-      const spsDiv = document.getElementById(`upgrade-${upgradeId}-sandwiches-per-second`)
-      spsDiv.innerText = json.sandwiches_per_second_modifier
-
-    }
   }
 })()
