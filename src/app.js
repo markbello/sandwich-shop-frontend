@@ -13,7 +13,8 @@ const App = (function(){
 
       let resetButton = document.getElementById('reset-button')
       resetButton.addEventListener('click', function(){
-        // ShopsAdapter.resetShop()
+        console.log('poop')
+        ShopsAdapter.updateBalance(0.0)
       })
 
       ShopsAdapter.getShop()

@@ -2,18 +2,18 @@ const WorkersAdapter = (function(){
   return class WorkersAdapter {
 
     static getAllWorkers(){
-      return fetch('http://localhost:3000/api/v1/workers')
+      return fetch('https://sandwich-clicker-api.herokuapp.com/api/v1/workers')
       .then(res => res.json())
     }
 
     static getWorker(id){
-      return fetch('http://localhost:3000/api/v1/workers/' + id)
+      return fetch('https://sandwich-clicker-api.herokuapp.com/api/v1/workers/' + id)
       .then(res => res.json())
     }
 
     // static updateWorker(id, sandwiches, quantity, cost){
     static updateWorker(worker){
-      return fetch('http://localhost:3000/api/v1/workers/' + worker.id,{
+      return fetch('https://sandwich-clicker-api.herokuapp.com/api/v1/workers/' + worker.id,{
         method: 'PATCH',
         headers:{
           'Accept': 'application/json',

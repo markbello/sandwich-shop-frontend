@@ -1,12 +1,12 @@
 const ShopsAdapter = (function(){
   return class ShopsAdapter {
     static getShop(){
-      return fetch('http://localhost:3000/api/v1/shops/1')
+      return fetch('https://sandwich-clicker-api.herokuapp.com/api/v1/shops/1')
       .then(res => res.json())
     }
 
     static updateShop(newBalance){
-      return fetch('http://localhost:3000/api/v1/shops/1',{
+      return fetch('https://sandwich-clicker-api.herokuapp.com/api/v1/shops/1',{
         method: 'PATCH',
         headers:{
           'Accept': 'application/json',
@@ -20,7 +20,7 @@ const ShopsAdapter = (function(){
     }
 
     static updateBalance(newBalance){
-      return fetch('http://localhost:3000/api/v1/shops/1',{
+      return fetch('https://sandwich-clicker-api.herokuapp.com/api/v1/shops/1',{
         method: 'PATCH',
         headers:{
           'Accept': 'application/json',
